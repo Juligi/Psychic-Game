@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Psychic Game</title>
+</head>
+<body>
+
+    <div id="game">
+
+    <H1>The Psychic Game</H1>
+
+    <h2>Guess what letter I am thinking of?</h2>
+
+    <h3> wins:</h3>
+    <h3> losses:</h3>
+    <h3> Guesses Left</h3>
+
+    <h2>Your Guesses so far:  </h2>
+    
+
+</div>
+<script type="text/javascript"></script>
+
+<!-- the app randomly picks a letter, and the user has to guess which letter the app chose. Game text:
+
+3. Guess what letter I'm thinking of
+    User chooses letter
+    Computer chooses a letter
+    win/lose output, add outcome to win/loss computation
+    resets everytime whether loss/win
+
+4. Wins: (# of times the user has guessed the letter correctly)
+
+5. Losses: (# of times the user has failed to guess the letter correctly after exhausting all guesses)
+
+6. Guesses Left: (# of guesses left. This will update)
+
+7. Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
+
+8. When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
+
+9. When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins). -->
+    
+<script type="text/javascript">
+    
+    var options = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft= 10;
+
+    document.onkeyup = function () {
+       var userguess = String.fromCharCode(event.keyCode)
+      
+       console.log(userguess);
+
+       var computerGuess = options[Math.floor(Math.random()* options.length)];
+        console.log(computerGuess);
+
+        if ((userguess==computerGuess)) {
+            wins++;
+            alert("wins: " + wins);
+            
+        }
+
+        else {
+            losses++;
+            alert("losses: " + losses);
+            
+        }
+
+        var html = "<h2>Guess what letter I'm thinking of</h2>" + "<h3>wins: " + wins + "</h3>" + 
+            "<h3>losses: " + losses + "</h3>";
+
+            }
+       
+</script>
+
+</body>
+</html>
