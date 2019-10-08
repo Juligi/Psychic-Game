@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Homework 3 - Psychic Game</title>
+  <!-- <script src="assets\javascript\game.js"></script> -->
+</head>
+<body>
+    <h1>The Psychic Game</h1>
+    <h3>Guess what letter I am thinking of?</h3>
+    <p> Wins: <span id="wins">0</p>
+    <p> Losses: <span id="losses">0</p>
+    <p> Guesses Left: <span id="guessesLeft">0</p>
+    <p> Your Guesses So Far: <span id="guessesSoFar">0</p>
+  </div>
+
+
+  <script type="text/javascript">  
+    var random
+    var computerGuess
+    // Creates an array that lists out all of the options (the entire alphabet).
+    var alphabet = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n",
+        "o",
+        "p",
+        "q",
+        "r",
+        "s",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z"
+      ];
+
+    // Creating variables to hold the number of wins, losses. They start at 0.
+    var wins = 0;
+    var losses = 0;
+    var guessesLeft = 10;
+    var guessesSoFar= [];
+
+// function to grab the HTML element to update guessesLeft
+
+    function updateguessesLeft() {
+        document.querySelector("#guessesLeft").innerHTML = guessesLeft;
+      };
+
+   // function to display user letter guess
+
+   function updateguessesSoFar() {
+    document.querySelector("#guessesSoFar").innerHTML = guessesSoFar;
+      };
+
+       //  This is the computer's Guess
+
+    function  resetComputerGuess() {
+        random = [Math.floor(Math.random() * 26)];
+      };
+
+    // Random computer Choice
+    computerGuess = alphabet[random];
+      
+    //   functions to reset
+
+    function reset() {
+        guessesSoFar = [];
+        guessesLeft = 10
+        updateguessesSoFar();
+        updateguessesLeft();
+        resetComputerGuess();
+    }
+
+    // run on app start
+
+    resetComputerGuess();
+    updateguessesLeft();
+
+        //  conditions for the game
+        document.addEventListener("keypress", function(event) {
+            guessesLeft--;
+        var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
+        if (userGuess === computerGuess) {
+          wins++;
+        document.querySelector("#wins").innerHTML = wins
+        reset()
+        } else {
+        if (guessesLeft === 0){
+          losses++;
+         document.querySelector("#losses").innerHTML = losses;
+         reset()
+        } else {
+            guessesSoFar.push(userGuess);
+            updateguessesLeft();
+            updateguessesSoFar();
+            resetComputerGuess();
+        }
+        }
+    });
+    </script>
+    
+  </body>
+</html>     
